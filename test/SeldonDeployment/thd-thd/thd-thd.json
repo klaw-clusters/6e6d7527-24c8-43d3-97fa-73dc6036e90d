@@ -6,6 +6,7 @@
         "namespace": "test",
         "creationTimestamp": null,
         "labels": {
+            "app.kubernetes.io/instance": "6e6d7527-24c8-43d3-97fa-73dc6036e90d-test",
             "fluentd": "true"
         }
     },
@@ -52,7 +53,7 @@
                 "replicas": 1,
                 "engineResources": {},
                 "svcOrchSpec": {},
-                "traffic": 90,
+                "traffic": 100,
                 "explainer": {
                     "type": "AnchorTabular",
                     "modelUri": "gs://tom-seldon-examples/retail-workshop/pretrained/lr",
@@ -61,39 +62,6 @@
                         "resources": {}
                     }
                 }
-            },
-            {
-                "name": "canary",
-                "graph": {
-                    "name": "thd-thd-container",
-                    "implementation": "SKLEARN_SERVER",
-                    "modelUri": "gs://tom-seldon-examples/retail-workshop/models/thd/gb",
-                    "logger": {
-                        "mode": "all"
-                    }
-                },
-                "componentSpecs": [
-                    {
-                        "metadata": {
-                            "creationTimestamp": "2021-06-08T14:41:01Z"
-                        },
-                        "spec": {
-                            "containers": [
-                                {
-                                    "name": "thd-thd-container",
-                                    "resources": {}
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "annotations": {
-                    "seldon.io/canary": "true"
-                },
-                "engineResources": {},
-                "svcOrchSpec": {},
-                "traffic": 10
             }
         ],
         "annotations": {
