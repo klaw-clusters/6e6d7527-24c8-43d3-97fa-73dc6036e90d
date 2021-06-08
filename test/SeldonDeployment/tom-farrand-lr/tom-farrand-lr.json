@@ -6,6 +6,7 @@
         "namespace": "test",
         "creationTimestamp": null,
         "labels": {
+            "app.kubernetes.io/instance": "6e6d7527-24c8-43d3-97fa-73dc6036e90d-test",
             "fluentd": "true"
         }
     },
@@ -52,51 +53,7 @@
                 "replicas": 1,
                 "engineResources": {},
                 "svcOrchSpec": {},
-                "traffic": 80
-            },
-            {
-                "name": "canary",
-                "graph": {
-                    "name": "tom-farrand-lr-container",
-                    "implementation": "SKLEARN_SERVER",
-                    "modelUri": "gs://tom-seldon-examples/retail-workshop/models/tom-farrand/gb",
-                    "logger": {
-                        "mode": "all"
-                    }
-                },
-                "componentSpecs": [
-                    {
-                        "metadata": {
-                            "creationTimestamp": "2021-06-08T08:01:48Z"
-                        },
-                        "spec": {
-                            "containers": [
-                                {
-                                    "name": "tom-farrand-lr-container",
-                                    "resources": {
-                                        "limits": {
-                                            "cpu": "1",
-                                            "memory": "1Gi",
-                                            "nvidia.com/gpu": "0"
-                                        },
-                                        "requests": {
-                                            "cpu": "100m",
-                                            "memory": "1Gi",
-                                            "nvidia.com/gpu": "0"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "annotations": {
-                    "seldon.io/canary": "true"
-                },
-                "engineResources": {},
-                "svcOrchSpec": {},
-                "traffic": 20
+                "traffic": 100
             }
         ],
         "annotations": {
