@@ -1,6 +1,6 @@
 {
     "kind": "SeldonDeployment",
-    "apiVersion": "machinelearning.seldon.io/v1",
+    "apiVersion": "machinelearning.seldon.io/v1alpha2",
     "metadata": {
         "name": "alexyip-alexyip",
         "namespace": "test",
@@ -52,51 +52,7 @@
                 "replicas": 1,
                 "engineResources": {},
                 "svcOrchSpec": {},
-                "traffic": 90
-            },
-            {
-                "name": "canary",
-                "graph": {
-                    "name": "alexyip-alexyip-container",
-                    "implementation": "SKLEARN_SERVER",
-                    "modelUri": "gs://tom-seldon-examples/retail-workshop/models/alexyip/gb",
-                    "logger": {
-                        "mode": "all"
-                    }
-                },
-                "componentSpecs": [
-                    {
-                        "metadata": {
-                            "creationTimestamp": "2021-06-08T14:38:21Z"
-                        },
-                        "spec": {
-                            "containers": [
-                                {
-                                    "name": "alexyip-alexyip-container",
-                                    "resources": {
-                                        "limits": {
-                                            "cpu": "1",
-                                            "memory": "1Gi",
-                                            "nvidia.com/gpu": "0"
-                                        },
-                                        "requests": {
-                                            "cpu": "100m",
-                                            "memory": "1Gi",
-                                            "nvidia.com/gpu": "0"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "annotations": {
-                    "seldon.io/canary": "true"
-                },
-                "engineResources": {},
-                "svcOrchSpec": {},
-                "traffic": 10
+                "traffic": 100
             }
         ],
         "annotations": {
