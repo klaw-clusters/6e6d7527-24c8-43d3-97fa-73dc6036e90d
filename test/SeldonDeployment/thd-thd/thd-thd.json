@@ -1,6 +1,6 @@
 {
     "kind": "SeldonDeployment",
-    "apiVersion": "machinelearning.seldon.io/v1alpha2",
+    "apiVersion": "machinelearning.seldon.io/v1",
     "metadata": {
         "name": "thd-thd",
         "namespace": "test",
@@ -52,7 +52,7 @@
                 "replicas": 1,
                 "engineResources": {},
                 "svcOrchSpec": {},
-                "traffic": 100,
+                "traffic": 90,
                 "explainer": {
                     "type": "AnchorTabular",
                     "modelUri": "gs://tom-seldon-examples/retail-workshop/pretrained/lr",
@@ -61,6 +61,39 @@
                         "resources": {}
                     }
                 }
+            },
+            {
+                "name": "canary",
+                "graph": {
+                    "name": "thd-thd-container",
+                    "implementation": "SKLEARN_SERVER",
+                    "modelUri": "gs://tom-seldon-examples/retail-workshop/models/thd/gb",
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2021-06-08T14:41:01Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "thd-thd-container",
+                                    "resources": {}
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "annotations": {
+                    "seldon.io/canary": "true"
+                },
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 10
             }
         ],
         "annotations": {
