@@ -1,6 +1,6 @@
 {
     "kind": "SeldonDeployment",
-    "apiVersion": "machinelearning.seldon.io/v1",
+    "apiVersion": "machinelearning.seldon.io/v1alpha2",
     "metadata": {
         "name": "mefta-sadat-mefta-sadat",
         "namespace": "test",
@@ -52,64 +52,7 @@
                 "replicas": 1,
                 "engineResources": {},
                 "svcOrchSpec": {},
-                "traffic": 90
-            },
-            {
-                "name": "canary",
-                "graph": {
-                    "name": "mefta-sadat-mefta-sadat-container",
-                    "implementation": "SKLEARN_SERVER",
-                    "modelUri": "gs://tom-seldon-examples/retail-workshop/models/mefta-sadat/gb",
-                    "logger": {
-                        "mode": "all"
-                    }
-                },
-                "componentSpecs": [
-                    {
-                        "metadata": {
-                            "creationTimestamp": "2021-06-08T14:38:24Z"
-                        },
-                        "spec": {
-                            "containers": [
-                                {
-                                    "name": "mefta-sadat-mefta-sadat-container",
-                                    "resources": {
-                                        "limits": {
-                                            "cpu": "1",
-                                            "memory": "1Gi",
-                                            "nvidia.com/gpu": "0"
-                                        },
-                                        "requests": {
-                                            "cpu": "100m",
-                                            "memory": "1Gi",
-                                            "nvidia.com/gpu": "0"
-                                        }
-                                    }
-                                }
-                            ]
-                        },
-                        "hpaSpec": {
-                            "minReplicas": 3,
-                            "maxReplicas": 5,
-                            "metrics": [
-                                {
-                                    "type": "Resource",
-                                    "resource": {
-                                        "name": "cpu",
-                                        "targetAverageUtilization": 10
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "annotations": {
-                    "seldon.io/canary": "true"
-                },
-                "engineResources": {},
-                "svcOrchSpec": {},
-                "traffic": 10
+                "traffic": 100
             }
         ],
         "annotations": {
