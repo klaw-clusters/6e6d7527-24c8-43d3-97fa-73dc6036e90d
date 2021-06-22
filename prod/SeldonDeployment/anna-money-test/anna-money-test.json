@@ -6,7 +6,6 @@
         "namespace": "prod",
         "creationTimestamp": null,
         "labels": {
-            "app.kubernetes.io/instance": "6e6d7527-24c8-43d3-97fa-73dc6036e90d-prod",
             "fluentd": "true"
         }
     },
@@ -17,8 +16,8 @@
                 "name": "default",
                 "graph": {
                     "name": "anna-money-test-container",
-                    "implementation": "XGBOOST_SERVER",
-                    "modelUri": "gs://seldon-models/xgboost/iris",
+                    "implementation": "SKLEARN_SERVER",
+                    "modelUri": "gs://seldon-models/sklearn/iris",
                     "logger": {
                         "mode": "all"
                     }
@@ -26,7 +25,7 @@
                 "componentSpecs": [
                     {
                         "metadata": {
-                            "creationTimestamp": "2021-06-22T13:46:02Z"
+                            "creationTimestamp": "2021-06-22T13:36:10Z"
                         },
                         "spec": {
                             "containers": [
@@ -46,14 +45,24 @@
                                     }
                                 }
                             ]
+                        },
+                        "hpaSpec": {
+                            "minReplicas": 1,
+                            "maxReplicas": 2,
+                            "metrics": [
+                                {
+                                    "type": "Resource",
+                                    "resource": {
+                                        "name": "cpu",
+                                        "targetAverageUtilization": 10
+                                    }
+                                }
+                            ]
                         }
                     }
                 ],
                 "replicas": 1,
                 "engineResources": {},
-                "labels": {
-                    "version": "default"
-                },
                 "svcOrchSpec": {},
                 "traffic": 100
             }
